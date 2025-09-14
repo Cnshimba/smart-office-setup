@@ -1,0 +1,61 @@
+version: '3.8'
+services:
+  omnicam:
+    image: php:8.0-apache
+    container_name: omnicam
+    volumes:
+      - ./services/omnicam/www:/var/www/html:ro
+      - ./services/omnicam/flags:/opt/flags:ro
+    networks:
+      labnet:
+        ipv4_address: 192.168.100.10
+
+  thermostat:
+    image: php:8.0-apache
+    container_name: thermostat
+    volumes:
+      - ./services/thermostat/www:/var/www/html:ro
+      - ./services/thermostat/db:/var/www/db:rw
+    networks:
+      labnet:
+        ipv4_address: 192.168.100.11
+
+  gateway:
+    image: dperson/samba
+    container_name: iot-gateway
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./services/gateway/smb-shares/firmware_updates:/share/firmware_updates
+      - ./services/gateway/smb-shares/sensor_logs:/share/sensor_logs
+      - ./services/gateway/smb.conf:/etc/samba/smb.conf:ro
+    environment:
+      - TZ=UTC
+    networks:
+      labnet:
+        ipv4_address: 192.168.100.12
+
+  dashboard:
+    image: php:8.0-apache
+    container_name: dashboard
+    volumes:
+      - ./services/dashboard/www:/var/www/html:ro
+    networks:
+      labnet:
+        ipv4_address: 192.168.100.13
+
+  employee:
+    build: ./services/employee
+    container_name: employeepc
+    networks:
+      labnet:
+        ipv4_address: 192.168.100.20
+    cap_add:
+      - NET_ADMIN
+
+networks:
+  labnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
