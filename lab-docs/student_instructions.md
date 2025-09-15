@@ -2,7 +2,7 @@
 
 ---
 
-# Smart Office IoT Capstone Lab: Penetration Testing Challenges - Student Version
+# Smart Office IoT Lab: Penetration Testing Challenge
 
 ## Lab Overview
 
