@@ -9,7 +9,8 @@ services:
     networks:
       labnet:
         ipv4_address: 192.168.100.10
-
+    ports:
+      - "8081:80"
   thermostat:
     image: php:8.0-apache
     container_name: thermostat
@@ -19,7 +20,8 @@ services:
     networks:
       labnet:
         ipv4_address: 192.168.100.11
-
+    ports:
+      - "8082:82"
   gateway:
     image: dperson/samba
     container_name: iot-gateway
@@ -43,7 +45,8 @@ services:
     networks:
       labnet:
         ipv4_address: 192.168.100.13
-
+    ports:
+      - "8083:80"
   employee:
     build: ./services/employee
     container_name: employeepc
