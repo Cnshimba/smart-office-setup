@@ -220,7 +220,7 @@ This section guides you through deploying the vulnerable Smart Office IoT networ
 *   **Target**: `omnicam` at `192.168.100.10` (accessible via `http://192.168.100.10:8081/login.php`).
 *   **Tools to Use**: Web browser, manual XSS payloads.
 *   **Tasks**:
-    1.  **Identify Vulnerable Input**: Access `http://192.168.100.10:8081/login.php` and observe the "Your name" input field and "Visitor log" [My current query, 385]. Notice any immediate alerts that appear upon loading the page.
+    1.  **Identify Vulnerable Input**: Access `http://192.168.100.10:8081/login.php` and observe the "Your name" input field and "Visitor log". Notice any immediate alerts that appear upon loading the page.
     2.  **Inject Simple XSS Payload**: Enter a simple Stored XSS payload (e.g., `<script>alert("XSS Successful!")</script>`) into the "Your name" field and submit.
     3.  **Verify Execution**: Refresh the page or revisit it to see if the payload executes.
     4.  **Cookie Stealing Payload**: If successful, try to replace the `alert()` script with a cookie-stealing payload (e.g., `<script>alert(document.cookie)</script>`).
@@ -249,7 +249,7 @@ This section guides you through deploying the vulnerable Smart Office IoT networ
         *   Make the script executable (`chmod +x recon.sh`).
         *   Run your script against `192.168.100.12` (the `gateway`).
     2.  **Draft a Penetration Test Report**:
-        *   Using a markdown editor, draft a **preliminary penetration test report** based on the `pentest_report_template.md` (as mentioned in `lab.pdf`) and by reviewing publicly available examples.
+        *   Using a markdown editor, draft a **preliminary penetration test report** based on the `pentest_report_template.md` and by reviewing publicly available examples.
         *   Your report should include at least the following sections and summarize your findings from **all** challenges (1-6):
             *   **Executive Summary**: A brief, non-technical overview of the key findings and overall risk.
             *   **Purpose and Scope**: What was tested and why.
